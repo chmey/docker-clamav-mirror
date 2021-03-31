@@ -1,9 +1,13 @@
 from cvdupdate.cvdupdate import CVDUpdate
-import schedule
+import threading
 import logging
 import os
+import time
 import http.server
 import socketserver
+
+# Update the mirror every N hours
+EVERY_N_HOURS = 4
 
 
 def update():
@@ -14,11 +18,17 @@ def update():
         pass
 
 
+def keep_updating():
+    while True:
+        logging.info("Performing update!")
+        update()
+        time.sleep(60 * 60 * EVERY_N_HOURS)
+
+
 if __name__ == "__main__":
-    # Update the mirror every 4 hours
-    schedule.every(5).hours.do(update)
     logging.info("Performing initial update")
-    update()
+    t = threading.Thread(target=keep_updating)
+    t.start()
 
     logging.info("Starting web server")
     try:
@@ -26,5 +36,5 @@ if __name__ == "__main__":
         with socketserver.TCPServer(("", 80), http.server.SimpleHTTPRequestHandler) as httpd:
             logging.info("Now serving at port TCP 80")
             httpd.serve_forever()
-    except:
-        logging.error("Failed bringing up the web server.")
+    except Exception as e:
+        logging.error("Failed bringing up the web server. %s" % e)
