@@ -26,9 +26,9 @@ DatabaseMirror http://my-dockerized-clamav-mirror
 while replacing the hostname with the IP or hostname of your database mirror host.
 
 ## Third Party
-For updating the dataase, the Python tool `cvdupdate` developed by Micah Snyder (co-dev of ClamAV) is used.
+For updating the database, the Python tool `cvdupdate` developed by Micah Snyder (co-dev of ClamAV) and published under the Cisco Talos namespace is used.
 
-* [cvdupdate](https://github.com/micahsnyder/cvdupdate/blob/main/LICENSE): This tool downloads the latest ClamAV databases along with the latest database patch files.
+* [cvdupdate](https://github.com/Cisco-Talos/cvdupdate/blob/main/LICENSE): This tool downloads the latest ClamAV databases along with the latest database patch files.
 
 ## Configuration
 So far the only possible configuration is to rebuild the image with changed parameters in `mirror.py`.
