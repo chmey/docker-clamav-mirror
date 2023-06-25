@@ -12,10 +12,8 @@ The private mirror which is this dockerized project, updates its database every 
 ## Instructions
 
 ```bash
-# First create a persistent volume
-sudo docker volume create clamav_database 
-# Then run the mirror on port 80, attach the volume and make the container remove itself after stopping
-sudo docker run --rm --name clamav_mirror -p 80:80 -v clamav_database:/clamav chmey/clamav-mirror:latest
+# Then run the mirror on port 80
+sudo docker run --rm --name clamav_mirror -p 80:80 chmey/clamav-mirror:latest
 ``` 
 
 In the freshclam.conf on ClamAV hosts, set:
