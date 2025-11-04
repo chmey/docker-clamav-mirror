@@ -1,4 +1,6 @@
 # Dockerized ClamAV Private Mirror
+Archived: This project is now in read-only mode to provide an example how to host a private ClamAV mirror.
+
 This is a dockerized database mirror for the Clam Antivirus. 
 
 While by default using official mirrors ClamAV allows the configuration of a `PrivateMirror` or `DatabaseMirror` to be a custom hostname or IP address under your management.
